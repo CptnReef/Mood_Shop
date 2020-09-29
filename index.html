@@ -28,16 +28,62 @@
     <script>
       const cart = []
 
+      const a = 99
+      const b = 66
+      const c = "hey"
+      const d = "woah"
+      const  obj = {a, b, c, d}
+
+      console.log(obj)
+      console.log(`****************************************`)
+
       function addItem(name,price){
+        for (let i = 0; i < cart.length; i += 1) {
+          if (cart[i].name === name) {
+              cart[i].qty += 1
+              return
+              //stop here
+          }
+        }
         const item = {name:name,price:price,qty:1}
         cart.push(item)
       }
 
-      function showItems(){
-       console.log(`You have ${cart.length} items in your cart.`) 
+      // Show Items
+      function showItems() {
+        const qty = getQty()
+        console.log(`You have ${qty} items in your cart.`) 
+
+        for (let i = 0; i < cart.length; i += 1) {
+          console.log(`- ${cart[i].name} - $${cart[i].price} X - ${cart[i].qty}`) 
+       }
+        console.log(`Total in cart: $${getTotal()}`)
       }
 
+      // Get Qty
+      function getQty() {
+        let qty = 0
+        for (let i = 0; i < cart.length; i += 1) {
+          qty += cart[i].qty
+        }
+        return qty
+      }
+
+      // Get total
+      function getTotal() {
+        let total = 0
+        for (let i = 0; i < cart.length; i += 1) {
+        total += cart[i].price * cart[i].qty
+       }
+       return total.toFixed(2)
+      }
+
+
       addItem("Apples",2.99)
+      addItem("Apples",2.99)
+      addItem("Oranges",1.99)
+      addItem("Coconuts",0.99)
+      addItem("Bananas",1.99)
       addItem("Bananas",1.99)
 
       showItems()
