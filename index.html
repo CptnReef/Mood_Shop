@@ -22,11 +22,25 @@
           Display moods here
          -->
     </main>
-    <div>
-      <img src=’./resource/images’ width=300 height=300>
-      <p>description of mood</p>
-      <p>5.99</p>
-    </div>
+    <footer>
+    </footer>
     <script src='./resources/js/scripts.js' type="module"></script>
+    <script>
+      const cart = []
+
+      function addItem(name,price){
+        const item = {name:name,price:price,qty:1}
+        cart.push(item)
+      }
+
+      function showItems(){
+       console.log(`You have ${cart.length} items in your cart.`) 
+      }
+
+      addItem("Apples",2.99)
+      addItem("Bananas",1.99)
+
+      showItems()
+    </script>
 </body>
 </html>
