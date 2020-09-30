@@ -37,6 +37,7 @@
       console.log(obj)
       console.log(`****************************************`)
 
+//----------------------------------------------------------
       function addItem(name,price){
         for (let i = 0; i < cart.length; i += 1) {
           if (cart[i].name === name) {
@@ -49,6 +50,7 @@
         cart.push(item)
       }
 
+//----------------------------------------------------------
       // Show Items
       function showItems() {
         const qty = getQty()
@@ -60,6 +62,7 @@
         console.log(`Total in cart: $${getTotal()}`)
       }
 
+//----------------------------------------------------------
       // Get Qty
       function getQty() {
         let qty = 0
@@ -69,6 +72,7 @@
         return qty
       }
 
+//----------------------------------------------------------
       // Get total
       function getTotal() {
         let total = 0
@@ -78,13 +82,35 @@
        return total.toFixed(2)
       }
 
+//----------------------------------------------------------
+      function removeItem(name, qty = 0) {
+        for (let i = 0; i < cart.length; i += 1) {
+          if (cart[i].name === name) {
+            if (qty > 0) {
+              cart[i].qty -= qty
+            }
+
+            if (cart[i].qty < 1 || qty === 0) {
+              cart.splice(i, 1)           
+            }
+            return
+          }
+        }
+      }
+
+
+//----------------------------------------------------------
 
       addItem("Apples",2.99)
       addItem("Apples",2.99)
       addItem("Oranges",1.99)
+      addItem("Oranges",1.99)
+      addItem("Oranges",1.99)
       addItem("Coconuts",0.99)
       addItem("Bananas",1.99)
       addItem("Bananas",1.99)
+
+      removeItem('Bananas')
 
       showItems()
     </script>
