@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
     <header class='page-header'>
         <h4>The Mood Shop</h4>
         <nav class='nav-bar'>
@@ -23,9 +24,29 @@
          -->
     </main>
     <footer>
+      <ul id='item-list'>
+        <!-- cart items -->
+        <div id='cart-qty'>
+          <!-- cart qty here -->
+        </div>
+        <ul id='item-list'>
+          <!-- cart items -->
+        </ul>
+        <div id='cart-total'>
+          <!-- cart total -->
+        </div>
+      </ul>
+
     </footer>
-    <script src='./resources/js/scripts.js' type="module"></script>
     <script>
+      const itemList = document.getElementById('item-list')
+      const cartQty = document.getElementById('cart-qty')
+      const cartTotal = document.getElementById('cart-total')
+
+
+      itemList.innerHTML = '<li> Hello World</li>'
+
+      //---------------------------------------------------------------------------
       const cart = []
 
       const a = 99
@@ -55,11 +76,24 @@
       function showItems() {
         const qty = getQty()
         console.log(`You have ${qty} items in your cart.`) 
+        cartQty.innerHTML = `You have ${qty} items in your cart.`
 
+        let itemStr = ''
         for (let i = 0; i < cart.length; i += 1) {
-          console.log(`- ${cart[i].name} - $${cart[i].price} X - ${cart[i].qty}`) 
+          //console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`) 
+         // { name:'Apples', price:2.99, qty: 3}
+          
+          const { name, price, qty} = cart[i]
+
+          itemStr += `<li>
+            ${cart[i].name}
+            $${cart[i].price} x ${cart[i].qty} = 
+            ${cart[i].qty * cart[i].price} </li>`
        }
-        console.log(`Total in cart: $${getTotal()}`)
+       itemList.innerHTML = itemStr
+
+//        console.log(`Total in cart: $${getTotal()}`)
+        carTotal.innerHTML = `Total in cart: $${getTotal()}`
       }
 
 //----------------------------------------------------------
@@ -114,5 +148,6 @@
 
       showItems()
     </script>
-</body>
+    <script src='./resources/js/scripts.js' type="module"></script>
+  </body>
 </html>
